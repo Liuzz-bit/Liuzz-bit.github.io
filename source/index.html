@@ -101,8 +101,12 @@ section{padding:110px 0 0}
 .paper .img img{width:100%;height:100%;object-fit:cover;filter:grayscale(.6);transition:filter .5s,transform .7s}
 .paper:hover .img img{filter:none;transform:scale(1.03)}
 .paper .img .num{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);padding:4px 10px;border-radius:999px}
-.minis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.minis figure{margin:0;position:relative;border-radius:10px;overflow:hidden;background:#f4f1ec;height:96px}
+.minis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.minis figure.wide{grid-column:span 2}
+.minis figure{cursor:zoom-in}
+.paper .img img.diagram{object-fit:contain;background:#fff;filter:none;padding:8px}
+.paper .img:has(.diagram){background:#fff}
+.minis figure{margin:0;position:relative;border-radius:10px;overflow:hidden;background:#f4f1ec;height:84px}
 .minis img{width:100%;height:100%;object-fit:cover;filter:grayscale(.6);transition:filter .4s}
 .minis img.fit{object-fit:contain;padding:4px}
 .minis figcaption{position:absolute;left:6px;bottom:6px;font-size:10px;font-weight:700;letter-spacing:.04em;padding:2px 7px;border-radius:999px;background:rgba(0,0,0,.6);color:#fff}
@@ -208,6 +212,10 @@ h1,h2{text-wrap:balance}
 .idname{font-size:20px;font-weight:800;margin-top:4px;color:var(--text)!important}
 .idrole{font-size:13.5px;line-height:1.5}
 .idphoto{width:120px;aspect-ratio:3/4;object-fit:cover;object-position:50% 20%;border-radius:16px;flex:none;background:#fff}
+.lb{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb.on{display:flex}
+.lb img{max-width:min(1200px,100%);max-height:85vh;border-radius:12px;background:#fff}
+.lb p{position:absolute;bottom:20px;left:0;right:0;text-align:center;font-size:13px;color:#ccc}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s, transform .8s cubic-bezier(.2,.8,.2,1)}
 .reveal.in{opacity:1;transform:none}
 
@@ -233,7 +241,7 @@ h1,h2{text-wrap:balance}
   .exhibit{grid-template-columns:1fr 1fr;grid-template-rows:auto}.exhibit .ex-main{grid-column:1/-1;grid-row:auto}.exhibit figure:not(.ex-main){aspect-ratio:4/3}
   section{padding-top:80px}
   .paper{grid-template-columns:1fr}.paper .body{padding:20px 20px 22px}.paper h4{font-size:18px}
-  .minis{grid-template-columns:repeat(2,1fr)}.minis figure{height:88px}
+  .minis{grid-template-columns:repeat(2,1fr)}.minis figure{height:88px}.minis figure.wide{grid-column:span 2}
   .plist li{grid-template-columns:1fr;gap:4px}
   .plist .kind{order:-1;flex-direction:row;align-items:center}
   .news li{grid-template-columns:1fr;gap:2px}
@@ -266,7 +274,7 @@ h1,h2{text-wrap:balance}
         </div>
         <div class="btns">
           <a class="btn btn-light" href="#publications">View publications <span class="dot">→</span></a>
-          <a class="btn btn-ghost" href="https://orcid.org/orcid-search/search?searchQuery=Zhizheng%20Liu" id="orcid"><svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#a6ce39"/><path fill="#fff" d="M7.4 7.2h1.5v9.6H7.4zM8.15 4.9a.95.95 0 1 1 0 1.9.95.95 0 0 1 0-1.9zM10.6 7.2h4c3.1 0 4.6 2.2 4.6 4.8 0 2.8-2.1 4.8-4.6 4.8h-4zm1.5 1.4v6.8h2.4c2.4 0 3.3-1.8 3.3-3.4 0-2-1.2-3.4-3.3-3.4z"/></svg>ORCID</a>
+          <a class="btn btn-ghost" href="https://orcid.org/0009-0003-7823-2995" id="orcid"><svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#a6ce39"/><path fill="#fff" d="M7.4 7.2h1.5v9.6H7.4zM8.15 4.9a.95.95 0 1 1 0 1.9.95.95 0 0 1 0-1.9zM10.6 7.2h4c3.1 0 4.6 2.2 4.6 4.8 0 2.8-2.1 4.8-4.6 4.8h-4zm1.5 1.4v6.8h2.4c2.4 0 3.3-1.8 3.3-3.4 0-2-1.2-3.4-3.3-3.4z"/></svg>ORCID 0009-0003-7823-2995</a>
         </div>
       </div>
       <figure class="portrait">
@@ -310,6 +318,7 @@ h1,h2{text-wrap:balance}
       <h3><span>News</span><span class="num">scroll ↓</span></h3>
       <ul>
         <li><time>2026.10</time><span>Selected for the Young Elite Scientists Sponsorship Program (PhD Track), China Association for Science and Technology (CAST).</span></li>
+        <li><time>2026.09</time><span>Became a Recommended Individual Member of the China Industrial Design Association.</span></li>
         <li><time>2026.09</time><span>Started as a joint PhD student at CCDS, Nanyang Technological University, Singapore.</span></li>
         <li><time>2026.05</time><span>Exhibition <b>天宫灵境 · The Spiritual Realm of Heavenly Palace</b>, a touring digital exhibition funded by the China National Arts Fund, opened.</span></li>
         <li><time>2026.05</time><span>Awarded the State-Sponsored Graduate Study Abroad Program, China Scholarship Council.</span></li>
@@ -336,8 +345,8 @@ h1,h2{text-wrap:balance}
   <div class="feat">
     <a class="paper reveal" href="https://doi.org/10.1016/j.foar.2025.07.002">
       <div class="media">
-        <div class="img"><img src="images/paper-archibuilder.jpg" alt="ArchiBuilder VR scene recreating the world inside a Dunhuang mural"><span class="num"><i>#</i>01</span></div>
-        <div class="minis"><figure><img src="images/arch-fig-framework.jpg" alt="Framework" class="fit"><figcaption>Framework</figcaption></figure><figure><img src="images/arch-fig-storyboard.jpg" alt="Storyboard" class="fit"><figcaption>Storyboard</figcaption></figure><figure><img src="images/arch-fig-model.jpg" alt="3D model" class="fit"><figcaption>3D model</figcaption></figure><figure><img src="images/arch-fig-eval.jpg" alt="User study"><figcaption>User study</figcaption></figure></div>
+        <div class="img"><img src="images/paper-archibuilder.jpg" alt="ArchiBuilder: assembling a Dunhuang mural hall in VR"><span class="num"><i>#</i>01</span></div>
+        <div class="minis"><figure><img src="images/arch-m-mural.jpg" alt="Mural source"><figcaption>Mural source</figcaption></figure><figure><img src="images/arch-m-model.jpg" alt="3D reconstruction" class="fit"><figcaption>3D reconstruction</figcaption></figure><figure><img src="images/arch-m-assembly.jpg" alt="Component assembly"><figcaption>Component assembly</figcaption></figure><figure><img src="images/arch-m-storyboard.jpg" alt="Storyboard" class="fit"><figcaption>Storyboard</figcaption></figure><figure><img src="images/arch-m-flow.jpg" alt="Game flow" class="fit"><figcaption>Game flow</figcaption></figure><figure><img src="images/arch-m-scene.jpg" alt="VR scenes"><figcaption>VR scenes</figcaption></figure></div>
       </div>
       <div class="body">
         <div class="tags"><span class="tag hot">First Author</span><span class="tag">A&amp;HCI · EI</span><span class="tag">CAS Q1 Top</span></div>
@@ -350,8 +359,8 @@ h1,h2{text-wrap:balance}
     </a>
     <a class="paper reveal" href="https://doi.org/10.1186/s40494-024-01477-x" >
       <div class="media">
-        <div class="img"><img src="images/paper-dunhuang-color.jpg" alt="Painting a Dunhuang mural with a virtual brush in VR"><span class="num"><i>#</i>02</span></div>
-        <div class="minis"><figure><img src="images/hs-fig-framework.jpg" alt="Framework" class="fit"><figcaption>Framework</figcaption></figure><figure><img src="images/hs-fig-storyboard.jpg" alt="Storyboard" class="fit"><figcaption>Storyboard</figcaption></figure><figure><img src="images/hs-fig-task.jpg" alt="Gameplay"><figcaption>Gameplay</figcaption></figure><figure><img src="images/hs-fig-eval.jpg" alt="User study"><figcaption>User study</figcaption></figure></div>
+        <div class="img"><img src="images/paper-dunhuang-color.jpg" class="diagram" alt="Design framework of the VR serious game for Dunhuang colors"><span class="num"><i>#</i>02</span></div>
+        <div class="minis"><figure><img src="images/hs-m-cave.jpg" alt="Cave scene"><figcaption>Cave scene</figcaption></figure><figure><img src="images/hs-m-task.jpg" alt="Pigment tasks"><figcaption>Pigment tasks</figcaption></figure><figure><img src="images/hs-m-paint.jpg" alt="Painting the mural"><figcaption>Painting the mural</figcaption></figure><figure class="wide"><img src="images/hs-m-postcard.jpg" alt="Digital → postcard"><figcaption>Digital → postcard</figcaption></figure><figure><img src="images/hs-m-scene.jpg" alt="VR scene details"><figcaption>VR scene details</figcaption></figure></div>
       </div>
       <div class="body">
         <div class="tags"><span class="tag hot">First Author</span><span class="tag">SCI · A&amp;HCI</span><span class="tag">CAS Q1 Top</span></div>
@@ -478,12 +487,18 @@ h1,h2{text-wrap:balance}
   <div class="contact">
     <p class="eyebrow" style="color:#ffd2b8">Let's collaborate</p>
     <h2>Interested in heritage, VR or visualization research?</h2>
-    <a class="mail" href="mailto:liuzhizhengbit@163.com">liuzhizhengbit@163.com ↗</a>
+    <a class="mail" href="mailto:liuzhizhengbit@163.com">liuzhizhengbit@163.com ↗</a><br><a class="mail" style="font-size:16px;margin-top:14px" href="https://orcid.org/0009-0003-7823-2995">ORCID 0009-0003-7823-2995 ↗</a>
     <div class="bot"><span>© <span id="yr">2026</span> Zhizheng Liu · 刘郅政</span><a href="#top">Back to top ↑</a></div>
   </div>
 </footer>
 
+<div class="lb" id="lb"><img alt=""><p></p></div>
 <script>
+const lb=document.getElementById("lb");
+document.querySelectorAll(".minis figure").forEach(f=>f.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();
+  const i=f.querySelector("img");lb.querySelector("img").src=i.src;lb.querySelector("p").textContent=i.alt;lb.classList.add("on");}));
+lb.addEventListener("click",()=>lb.classList.remove("on"));
+document.addEventListener("keydown",e=>{if(e.key==="Escape")lb.classList.remove("on")});
 document.getElementById("yr").textContent = new Date().getFullYear();
 const filt = document.getElementById("filters");
 filt.addEventListener("click", e => {
