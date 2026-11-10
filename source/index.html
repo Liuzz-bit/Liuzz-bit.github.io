@@ -82,23 +82,35 @@ section{padding:110px 0 0}
 .about .zh{margin-top:14px;font-size:14.5px}
 .news{background:var(--surface);border-radius:var(--r-md);padding:28px 28px 18px}
 .news h3{display:flex;justify-content:space-between;font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
-.news ul{list-style:none}
+.news ul{list-style:none;max-height:430px;overflow-y:auto;padding-right:10px;margin-right:-10px;scrollbar-width:thin;scrollbar-color:#444 transparent;
+  -webkit-mask-image:linear-gradient(#000 85%,transparent);mask-image:linear-gradient(#000 85%,transparent)}
+.news ul::-webkit-scrollbar,.plist::-webkit-scrollbar{width:6px}.news ul::-webkit-scrollbar-thumb,.plist::-webkit-scrollbar-thumb{background:#444;border-radius:3px}
+.news li:last-child{padding-bottom:40px}
+.scroll-hint{font-size:11.5px;color:var(--dim);margin-top:6px;letter-spacing:.04em}
 .news li{display:grid;grid-template-columns:70px 1fr;gap:12px;padding:11px 0;border-top:1px solid var(--line);font-size:14px}
 .news time{color:var(--accent-2);font-weight:700;font-size:13px;font-variant-numeric:tabular-nums}
 .news em{font-style:italic}
 .news a{color:var(--accent-2);font-weight:600}
 
 /* featured papers */
-.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.paper{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s}
-.paper:hover{transform:translateY(-6px);border-color:#3b3b3b}
-.paper .img{position:relative;aspect-ratio:4/3;overflow:hidden;margin:10px 10px 0;border-radius:14px;background:var(--surface-2)}
-.paper .img img{width:100%;height:100%;object-fit:cover;filter:grayscale(.85) contrast(1.05);transition:filter .5s,transform .7s}
-.paper:hover .img img{filter:none;transform:scale(1.05)}
+.feat{display:flex;flex-direction:column;gap:16px}
+.paper{display:grid;grid-template-columns:1.1fr 1fr;gap:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s}
+.paper:hover{transform:translateY(-4px);border-color:#3b3b3b}
+.paper .media{padding:12px;display:flex;flex-direction:column;gap:8px}
+.paper .img{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:14px;background:var(--surface-2)}
+.paper .img img{width:100%;height:100%;object-fit:cover;filter:grayscale(.6);transition:filter .5s,transform .7s}
+.paper:hover .img img{filter:none;transform:scale(1.03)}
 .paper .img .num{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);padding:4px 10px;border-radius:999px}
-.paper .body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+.minis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.minis figure{margin:0;position:relative;border-radius:10px;overflow:hidden;background:#f4f1ec;height:96px}
+.minis img{width:100%;height:100%;object-fit:cover;filter:grayscale(.6);transition:filter .4s}
+.minis img.fit{object-fit:contain;padding:4px}
+.minis figcaption{position:absolute;left:6px;bottom:6px;font-size:10px;font-weight:700;letter-spacing:.04em;padding:2px 7px;border-radius:999px;background:rgba(0,0,0,.6);color:#fff}
+.paper:hover .minis img{filter:none}
+.minis.two{grid-template-columns:1fr 1fr}
+.paper .body{padding:30px 32px 26px;display:flex;flex-direction:column}
 .paper .tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
-.paper h4{font-size:17.5px;line-height:1.35;font-weight:700;margin-bottom:10px}
+.paper h4{font-size:22px;line-height:1.35;font-weight:700;margin-bottom:10px}
 .au{font-size:13.5px;color:var(--muted)}
 .au b{color:var(--text);font-weight:700;border-bottom:2px solid var(--accent)}
 .venue{font-size:13.5px;color:#d6cfc6;margin-top:4px;font-style:italic}
@@ -113,7 +125,7 @@ section{padding:110px 0 0}
 .filters button{font:600 13px var(--font);color:var(--muted);background:transparent;border:1px solid var(--line);padding:8px 16px;border-radius:999px;cursor:pointer;transition:.2s}
 .filters button:hover{color:var(--text);border-color:#444}
 .filters button.on{background:var(--text);color:#111;border-color:var(--text)}
-.plist{list-style:none;border-top:1px solid var(--line)}
+.plist{list-style:none;border-top:1px solid var(--line);max-height:620px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#444 transparent;border-bottom:1px solid var(--line)}
 .plist li{display:grid;grid-template-columns:70px 1fr auto;gap:22px;padding:20px 8px;border-bottom:1px solid var(--line);transition:background .2s}
 .plist li:hover{background:linear-gradient(90deg,var(--accent-soft),transparent 60%)}
 .plist .yr{color:var(--dim);font-weight:700}
@@ -163,7 +175,8 @@ footer.shell{margin:110px auto 20px}
 .contact .mail:hover{border-color:#fff}
 .contact .bot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:70px;font-size:13px;opacity:.75}
 
-h1,h2,h4,.t{text-wrap:balance}
+h1,h2{text-wrap:balance}
+.zh{word-break:keep-all;overflow-wrap:anywhere}
 /* honour chip in hero */
 .honor{display:inline-flex;align-items:center;gap:10px;margin-top:20px;padding:8px 16px 8px 8px;border-radius:999px;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(8px);font-size:13px;font-weight:600}
 .honor .star{width:26px;height:26px;border-radius:50%;background:#fff;color:var(--accent);display:grid;place-items:center;font-size:13px}
@@ -191,12 +204,6 @@ h1,h2,h4,.t{text-wrap:balance}
 .exhibit figure:hover img{transform:scale(1.04)}
 .ex-cap{font-size:13px;color:var(--muted)}.ex-cap b{color:var(--text)}
 .flag{display:inline-block;margin-left:8px;padding:2px 9px;border-radius:999px;background:var(--accent);color:#fff;font-size:11px;font-weight:700;letter-spacing:.04em}
-.minis{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:6px 10px 0}
-.minis img{width:100%;height:72px;object-fit:cover;border-radius:9px;background:var(--surface-2);filter:grayscale(.85);transition:filter .4s}
-.minis img:nth-child(2):last-child{grid-column:span 2}
-.minis img[src*="bz-"]{object-position:50% 8%}
-.paper:hover .minis img{filter:none}
-.minis img[src*="bz-"]{object-position:50% 0;background:#fff}
 .about-top{display:flex;gap:20px;align-items:center}
 .idname{font-size:20px;font-weight:800;margin-top:4px;color:var(--text)!important}
 .idrole{font-size:13.5px;line-height:1.5}
@@ -207,9 +214,9 @@ h1,h2,h4,.t{text-wrap:balance}
 /* ===== RESPONSIVE ===== */
 @media (max-width:1100px){.strip{grid-template-columns:repeat(3,minmax(0,1fr))}.strip small{grid-column:1/-1;max-width:none}}
 @media (max-width:980px){
+  .paper{grid-template-columns:1fr}
   .hero-body{grid-template-columns:1fr 240px;gap:32px}
   .about,.cv{grid-template-columns:1fr}
-  .feat{grid-template-columns:1fr 1fr}
   .projects{grid-template-columns:1fr}
 }
 @media (max-width:720px){
@@ -225,7 +232,8 @@ h1,h2,h4,.t{text-wrap:balance}
   .idphoto{width:92px}
   .exhibit{grid-template-columns:1fr 1fr;grid-template-rows:auto}.exhibit .ex-main{grid-column:1/-1;grid-row:auto}.exhibit figure:not(.ex-main){aspect-ratio:4/3}
   section{padding-top:80px}
-  .feat{grid-template-columns:1fr}
+  .paper{grid-template-columns:1fr}.paper .body{padding:20px 20px 22px}.paper h4{font-size:18px}
+  .minis{grid-template-columns:repeat(2,1fr)}.minis figure{height:88px}
   .plist li{grid-template-columns:1fr;gap:4px}
   .plist .kind{order:-1;flex-direction:row;align-items:center}
   .news li{grid-template-columns:1fr;gap:2px}
@@ -258,7 +266,7 @@ h1,h2,h4,.t{text-wrap:balance}
         </div>
         <div class="btns">
           <a class="btn btn-light" href="#publications">View publications <span class="dot">→</span></a>
-          <a class="btn btn-ghost" href="mailto:liuzhizhengbit@163.com">liuzhizhengbit@163.com</a>
+          <a class="btn btn-ghost" href="https://orcid.org/orcid-search/search?searchQuery=Zhizheng%20Liu" id="orcid"><svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#a6ce39"/><path fill="#fff" d="M7.4 7.2h1.5v9.6H7.4zM8.15 4.9a.95.95 0 1 1 0 1.9.95.95 0 0 1 0-1.9zM10.6 7.2h4c3.1 0 4.6 2.2 4.6 4.8 0 2.8-2.1 4.8-4.6 4.8h-4zm1.5 1.4v6.8h2.4c2.4 0 3.3-1.8 3.3-3.4 0-2-1.2-3.4-3.3-3.4z"/></svg>ORCID</a>
         </div>
       </div>
       <figure class="portrait">
@@ -277,7 +285,7 @@ h1,h2,h4,.t{text-wrap:balance}
 
   <div class="strip">
     <small>Where I study &amp; research</small>
-    <div class="aff"><span class="mark">BIT</span><div>Beijing Institute of Technology<em>PhD · Design and Arts · 2022–2028</em></div></div>
+    <div class="aff"><span class="mark">BIT</span><div>Beijing Institute of Technology<em>Master's–PhD · Design and Arts · 2022–Present</em></div></div>
     <div class="aff"><span class="mark">NTU</span><div>Nanyang Technological University<em>Joint PhD · CCDS · 2026–2027</em></div></div>
     <div class="aff"><span class="mark">TUT</span><div>Tianjin University of Technology<em>BA · School of Art · 2018–2022</em></div></div>
   </div>
@@ -299,18 +307,21 @@ h1,h2,h4,.t{text-wrap:balance}
       <p class="zh">刘郅政，北京理工大学设计与艺术学院博士研究生，南洋理工大学计算机与数据科学学院联合培养博士生。研究方向为文化遗产、人机交互、数字叙事与信息可视化。</p>
     </div>
     <div class="news reveal">
-      <h3><span>News</span><span class="num"><i>#</i>latest</span></h3>
+      <h3><span>News</span><span class="num">scroll ↓</span></h3>
       <ul>
+        <li><time>2026.10</time><span>Selected for the Young Elite Scientists Sponsorship Program (PhD Track), China Association for Science and Technology (CAST).</span></li>
         <li><time>2026.09</time><span>Started as a joint PhD student at CCDS, Nanyang Technological University, Singapore.</span></li>
-        <li><time>2026.06</time><span>Selected for the Young Elite Scientists Sponsorship Program (PhD Track), China Association for Science and Technology (CAST).</span></li>
         <li><time>2026.05</time><span>Exhibition <b>天宫灵境 · The Spiritual Realm of Heavenly Palace</b>, a touring digital exhibition funded by the China National Arts Fund, opened.</span></li>
         <li><time>2026.05</time><span>Awarded the State-Sponsored Graduate Study Abroad Program, China Scholarship Council.</span></li>
         <li><time>2025.11</time><span>Received the National Scholarship for doctoral students.</span></li>
         <li><time>2025.07</time><span>"ArchiBuilder" accepted by <em>Frontiers of Architectural Research</em>. <a href="https://doi.org/10.1016/j.foar.2025.07.002">DOI ↗</a></span></li>
         <li><time>2024.10</time><span>Dunhuang colors VR game accepted by <em>Heritage Science</em>. <a href="https://doi.org/10.1186/s40494-024-01477-x">DOI ↗</a></span></li>
+        <li><time>2024.09</time><span>Began the Master's–PhD program (硕博连读) at the School of Design and Arts, Beijing Institute of Technology.</span></li>
         <li><time>2024.03</time><span>Inclusive smart-home review published as the <em>cover article</em> of 包装工程. <a href="https://doi.org/10.19554/j.cnki.1001-3563.2024.06.001">DOI ↗</a></span></li>
         <li><time>2023.11</time><span>Received the National Scholarship for master's students.</span></li>
         <li><time>2023.07</time><span>Won First Prize in the national finals of the NCDA National Digital Art Design Competition.</span></li>
+        <li><time>2022.09</time><span>Admitted to Beijing Institute of Technology as a master's student, ranked first in the Art and Design entrance examination.</span></li>
+        <li><time>2022.06</time><span>Graduated with a BA from the School of Art, Tianjin University of Technology.</span></li>
       </ul>
     </div>
   </div>
@@ -324,8 +335,10 @@ h1,h2,h4,.t{text-wrap:balance}
   </div>
   <div class="feat">
     <a class="paper reveal" href="https://doi.org/10.1016/j.foar.2025.07.002">
-      <div class="img"><img src="images/paper-archibuilder.jpg" alt="ArchiBuilder VR scene recreating the world inside a Dunhuang mural"><span class="num"><i>#</i>01</span></div>
-      <div class="minis"><img src="images/arch-2.jpg" alt="Reconstructed mural hall model"><img src="images/arch-3.jpg" alt="In-game knowledge presentation"><img src="images/arch-4.jpg" alt="User evaluation in VR"></div>
+      <div class="media">
+        <div class="img"><img src="images/paper-archibuilder.jpg" alt="ArchiBuilder VR scene recreating the world inside a Dunhuang mural"><span class="num"><i>#</i>01</span></div>
+        <div class="minis"><figure><img src="images/arch-fig-framework.jpg" alt="Framework" class="fit"><figcaption>Framework</figcaption></figure><figure><img src="images/arch-fig-storyboard.jpg" alt="Storyboard" class="fit"><figcaption>Storyboard</figcaption></figure><figure><img src="images/arch-fig-model.jpg" alt="3D model" class="fit"><figcaption>3D model</figcaption></figure><figure><img src="images/arch-fig-eval.jpg" alt="User study"><figcaption>User study</figcaption></figure></div>
+      </div>
       <div class="body">
         <div class="tags"><span class="tag hot">First Author</span><span class="tag">A&amp;HCI · EI</span><span class="tag">CAS Q1 Top</span></div>
         <h4>ArchiBuilder: A Virtual Reality-Based Gamified Experience Design for Architectural Images in Dunhuang Murals</h4>
@@ -335,9 +348,11 @@ h1,h2,h4,.t{text-wrap:balance}
         <div class="foot"><span>Project: Spatial lineage of Dunhuang mural architecture (PI)</span><span class="go"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
       </div>
     </a>
-    <a class="paper reveal" href="https://doi.org/10.1186/s40494-024-01477-x" style="transition-delay:.08s">
-      <div class="img"><img src="images/paper-dunhuang-color.jpg" alt="Painting a Dunhuang mural with a virtual brush in VR"><span class="num"><i>#</i>02</span></div>
-      <div class="minis"><img src="images/hs-2.jpg" alt="Pigment collection task progress"><img src="images/hs-3.jpg" alt="Grinding pigment ore interaction"><img src="images/hs-4.jpg" alt="VR movement in the desert scene"></div>
+    <a class="paper reveal" href="https://doi.org/10.1186/s40494-024-01477-x" >
+      <div class="media">
+        <div class="img"><img src="images/paper-dunhuang-color.jpg" alt="Painting a Dunhuang mural with a virtual brush in VR"><span class="num"><i>#</i>02</span></div>
+        <div class="minis"><figure><img src="images/hs-fig-framework.jpg" alt="Framework" class="fit"><figcaption>Framework</figcaption></figure><figure><img src="images/hs-fig-storyboard.jpg" alt="Storyboard" class="fit"><figcaption>Storyboard</figcaption></figure><figure><img src="images/hs-fig-task.jpg" alt="Gameplay"><figcaption>Gameplay</figcaption></figure><figure><img src="images/hs-fig-eval.jpg" alt="User study"><figcaption>User study</figcaption></figure></div>
+      </div>
       <div class="body">
         <div class="tags"><span class="tag hot">First Author</span><span class="tag">SCI · A&amp;HCI</span><span class="tag">CAS Q1 Top</span></div>
         <h4>Design of a Virtual Reality Serious Game for Experiencing the Colors of Dunhuang Frescoes</h4>
@@ -347,12 +362,14 @@ h1,h2,h4,.t{text-wrap:balance}
         <div class="foot"><span>Project: Lineage of Dunhuang mural architectural imagery (NSSFC Major)</span><span class="go"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
       </div>
     </a>
-    <a class="paper reveal" href="https://doi.org/10.19554/j.cnki.1001-3563.2024.06.001" style="transition-delay:.16s">
-      <div class="img"><img src="images/paper-smarthome-cover.jpg" alt="Cover of Packaging Engineering, Vol. 45 No. 6" style="object-position:50% 15%"><span class="num"><i>#</i>03</span></div>
-      <div class="minis"><img src="images/bz-2.jpg" alt="Table of contents, special feature"><img src="images/bz-3.jpg" alt="First page of the article"></div>
+    <a class="paper reveal" href="https://doi.org/10.19554/j.cnki.1001-3563.2024.06.001" >
+      <div class="media">
+        <div class="img"><img src="images/paper-smarthome-cover.jpg" alt="Cover of Packaging Engineering, Vol. 45 No. 6" style="object-position:50% 12%"><span class="num"><i>#</i>03</span></div>
+        <div class="minis two"><figure><img src="images/bz-2.jpg" alt="Contents" class="fit"><figcaption>Contents</figcaption></figure><figure><img src="images/bz-3.jpg" alt="First page" class="fit"><figcaption>First page</figcaption></figure></div>
+      </div>
       <div class="body">
         <div class="tags"><span class="tag hot">Cover Article</span><span class="tag">北大核心</span></div>
-        <h4>包容性导向下的<wbr>智能家居设计<wbr>研究现状与展望</h4>
+        <h4 class="zh">包容性导向下的<wbr>智能家居设计<wbr>研究现状与展望</h4>
         <p class="en-sub">Research Status and Prospects of Inclusive Smart Home Design</p>
         <div class="au">姚健, <b>刘郅政</b>, 季曦冉, 付久强*</div>
         <div class="venue">包装工程 Packaging Engineering<br>Vol. 45, No. 6, 2024</div>
@@ -375,18 +392,18 @@ h1,h2,h4,.t{text-wrap:balance}
     <li data-k="sci"><span class="yr">2026</span><div><div class="t">ArchiBuilder: A virtual reality-based gamified experience design for architectural images in Dunhuang murals</div><div class="au"><b>Liu, Z.</b>, Ji, X., Cui, Y., Zhang, T., &amp; Yao, J.</div><div class="venue">Frontiers of Architectural Research</div></div><span class="kind"><span class="tag">A&amp;HCI · EI</span><span class="tag hot">CAS Q1 Top</span></span></li>
     <li data-k="conf"><span class="yr">2026</span><div><div class="t">Design of Dunhuang-themed costume art exhibition space based on user needs</div><div class="au"><b>Liu, Z.</b>, Feng, C., Cui, Y., Wang, Y., &amp; Yao, J.</div><div class="venue">Int. Conf. on Intelligent Engineering and Next-Gen Healthcare Systems (IENHS)</div></div><span class="kind"><span class="tag">EI</span></span></li>
     <li data-k="conf"><span class="yr">2026</span><div><div class="t">Design and preliminary evaluation of a virtual reality therapeutic game for children with spatial perception disorders</div><div class="au"><b>Liu, Z.</b>, Wang, M., Yu, F., &amp; Yao, J.</div><div class="venue">Int. Conf. on Intelligent Engineering and Next-Gen Healthcare Systems (IENHS)</div></div><span class="kind"><span class="tag">EI</span></span></li>
-    <li data-k="conf"><span class="yr">2025</span><div><div class="t">基于敦煌壁画建筑图像的混合现实体验设计研究</div><div class="au">姚健, <b>刘郅政</b></div><div class="venue">敦煌藏经洞的发现与中国俗文化研究学术研讨会</div></div><span class="kind"><span class="tag">Int'l Conf.</span></span></li>
+    <li data-k="conf"><span class="yr">2025</span><div><div class="t zh">基于敦煌壁画建筑图像的<wbr>混合现实体验设计研究</div><div class="au">姚健, <b>刘郅政</b></div><div class="venue">敦煌藏经洞的发现与中国俗文化研究学术研讨会</div></div><span class="kind"><span class="tag">Int'l Conf.</span></span></li>
     <li data-k="sci"><span class="yr">2024</span><div><div class="t">Design of a virtual reality serious game for experiencing the colors of Dunhuang frescoes</div><div class="au"><b>Liu, Z.</b>, Chen, D., Zhang, C., &amp; Yao, J.</div><div class="venue">Heritage Science</div></div><span class="kind"><span class="tag">SCI · A&amp;HCI</span><span class="tag hot">CAS Q1 Top</span></span></li>
     <li data-k="sci"><span class="yr">2024</span><div><div class="t">Design of breastfeeding chairs for maternity rooms based on Kano-AHP-QFD: User requirement-driven design approach</div><div class="au"><b>Liu, Z.</b>, Zhang, C., Ji, X., Yi, X., &amp; Yao, J.</div><div class="venue">Heliyon</div></div><span class="kind"><span class="tag">SCI</span></span></li>
     <li data-k="sci"><span class="yr">2024</span><div><div class="t">Immersive experiences in museums for elderly with cognitive disorders: a user-centered design approach</div><div class="au">Yi, X., <b>Liu, Z.</b>, Li, H., &amp; Jiang, B.</div><div class="venue">Scientific Reports</div></div><span class="kind"><span class="tag">SCI</span></span></li>
-    <li data-k="cn"><span class="yr">2024</span><div><div class="t">包容性导向下的智能家居设计研究现状与展望</div><div class="au">姚健, <b>刘郅政</b>, 季曦冉, 付久强</div><div class="venue">包装工程</div></div><span class="kind"><span class="tag">北大核心</span><span class="tag hot">封面文章</span></span></li>
-    <li data-k="cn"><span class="yr">2024</span><div><div class="t">基于用户需求驱动的新中式座椅设计研究</div><div class="au"><b>刘郅政</b>, 易欣玥, 张驰, 姚健</div><div class="venue">家具与室内装饰</div></div><span class="kind"><span class="tag">北大核心</span></span></li>
-    <li data-k="cn"><span class="yr">2024</span><div><div class="t">基于KANO-AHP的科技博物馆空间设计研究</div><div class="au">易欣玥, 江波, <b>刘郅政</b></div><div class="venue">设计</div></div><span class="kind"><span class="tag">AMI 扩展</span></span></li>
-    <li data-k="conf"><span class="yr">2024</span><div><div class="t">敦煌壁画中的卷草形补间铺作形态流变与意匠辨析</div><div class="au">姚健, 关湘粤, <b>刘郅政*</b>, 许丽鹏</div><div class="venue">敦煌石窟艺术国际学术研讨会</div></div><span class="kind"><span class="tag">Int'l Conf.</span></span></li>
+    <li data-k="cn"><span class="yr">2024</span><div><div class="t zh">包容性导向下的<wbr>智能家居设计<wbr>研究现状与展望</div><div class="au">姚健, <b>刘郅政</b>, 季曦冉, 付久强</div><div class="venue">包装工程</div></div><span class="kind"><span class="tag">北大核心</span><span class="tag hot">封面文章</span></span></li>
+    <li data-k="cn"><span class="yr">2024</span><div><div class="t zh">基于用户需求驱动的<wbr>新中式座椅设计研究</div><div class="au"><b>刘郅政</b>, 易欣玥, 张驰, 姚健</div><div class="venue">家具与室内装饰</div></div><span class="kind"><span class="tag">北大核心</span></span></li>
+    <li data-k="cn"><span class="yr">2024</span><div><div class="t zh">基于KANO-AHP的<wbr>科技博物馆空间设计研究</div><div class="au">易欣玥, 江波, <b>刘郅政</b></div><div class="venue">设计</div></div><span class="kind"><span class="tag">AMI 扩展</span></span></li>
+    <li data-k="conf"><span class="yr">2024</span><div><div class="t zh">敦煌壁画中的卷草形补间铺作<wbr>形态流变与意匠辨析</div><div class="au">姚健, 关湘粤, <b>刘郅政*</b>, 许丽鹏</div><div class="venue">敦煌石窟艺术国际学术研讨会</div></div><span class="kind"><span class="tag">Int'l Conf.</span></span></li>
     <li data-k="conf"><span class="yr">2023</span><div><div class="t">Research on the current situation and trends of artificial intelligence in exhibition design</div><div class="au">Yi, X., &amp; <b>Liu, Z.</b></div><div class="venue">International Conference on Human-Computer Interaction (HCII)</div></div><span class="kind"><span class="tag">EI</span></span></li>
     <li data-k="conf"><span class="yr">2023</span><div><div class="t">A visual analysis of VR user experience based on bibliometrics</div><div class="au">Yi, X., &amp; <b>Liu, Z.</b></div><div class="venue">Human Factors in Virtual Environments and Game Design (AHFE)</div></div><span class="kind"><span class="tag">Int'l Conf.</span></span></li>
-    <li data-k="cn"><span class="yr">2023</span><div><div class="t">基于文献计量学的明式家具研究现状及发展趋势分析</div><div class="au">姚健, <b>刘郅政</b>, 易欣玥, 于德华</div><div class="venue">家具与室内装饰</div></div><span class="kind"><span class="tag">北大核心</span></span></li>
-    <li data-k="cn"><span class="yr">2023</span><div><div class="t">基于绿色理念的儿童教育空间设计方法研究</div><div class="au">易欣玥, <b>刘郅政</b>, 陈钇伶, 江波</div><div class="venue">艺术与设计(理论)</div></div><span class="kind"><span class="tag">AMI 扩展</span></span></li>
+    <li data-k="cn"><span class="yr">2023</span><div><div class="t zh">基于文献计量学的<wbr>明式家具研究现状<wbr>及发展趋势分析</div><div class="au">姚健, <b>刘郅政</b>, 易欣玥, 于德华</div><div class="venue">家具与室内装饰</div></div><span class="kind"><span class="tag">北大核心</span></span></li>
+    <li data-k="cn"><span class="yr">2023</span><div><div class="t zh">基于绿色理念的<wbr>儿童教育空间设计方法研究</div><div class="au">易欣玥, <b>刘郅政</b>, 陈钇伶, 江波</div><div class="venue">艺术与设计(理论)</div></div><span class="kind"><span class="tag">AMI 扩展</span></span></li>
   </ol>
 </section>
 
@@ -397,15 +414,15 @@ h1,h2,h4,.t{text-wrap:balance}
   </div>
   <div class="projects">
     <div class="proj lead reveal"><div class="top"><b>Principal Investigator · 主持</b><span>2026</span></div>
-      <h4>基于多模态复原的敦煌壁画建筑图像空间谱系与演化机制研究</h4>
+      <h4 class="zh">基于多模态复原的<wbr>敦煌壁画建筑图像<wbr>空间谱系与演化机制研究</h4>
       <div class="m">Spatial lineage and evolution of architectural images in Dunhuang murals via multimodal restoration<br>BIT Graduate Research &amp; Innovation Program, Key Project (2025YCXZ047)</div>
       <div class="rel"><a href="https://doi.org/10.1016/j.foar.2025.07.002">ArchiBuilder · Frontiers of Architectural Research 2026</a></div></div>
     <div class="proj major reveal"><div class="top"><b>Participant · 参与<span class="flag">National Major</span></b><span>2024</span></div>
-      <h4>敦煌壁画建筑图像艺术的谱系构建与传承路径研究</h4>
+      <h4 class="zh">敦煌壁画建筑图像艺术的<wbr>谱系构建与传承路径研究</h4>
       <div class="m">Lineage construction and inheritance of architectural imagery in Dunhuang murals<br>National Social Science Fund of China, Major Project · Special Program for Rare Disciplines (24VJXT010)</div>
       <div class="rel"><a href="https://doi.org/10.1186/s40494-024-01477-x">Dunhuang Colors VR Game · Heritage Science 2024</a></div></div>
     <div class="proj naf reveal"><div class="top"><b>Participant · 参与<span class="flag">National Arts Fund</span></b><span>2025</span></div>
-      <h4>敦煌壁画建筑装饰艺术数字化展览</h4>
+      <h4 class="zh">敦煌壁画建筑装饰艺术<wbr>数字化展览</h4>
       <div class="m">Digital exhibition of architectural decoration art in Dunhuang murals · China National Arts Fund (2025-A-04-125-523)</div>
       <div class="exhibit">
         <figure class="ex-main"><img src="images/naf-main.jpg" alt="Exhibition hall with a pagoda line-drawing installation and a projected virtual Dunhuang palace"></figure>
@@ -414,13 +431,13 @@ h1,h2,h4,.t{text-wrap:balance}
       </div>
       <p class="ex-cap"><b>天宫灵境 · The Spiritual Realm of Heavenly Palace</b> — touring digital exhibition, 2026</p></div>
     <div class="proj reveal"><div class="top"><b>Participant · 参与</b><span>2024</span></div>
-      <h4>新中国家具设计中的“人民性”研究（1945–1978）</h4>
+      <h4 class="zh">新中国家具设计中的<wbr>“人民性”研究（1945–1978）</h4>
       <div class="m">MOE Humanities and Social Sciences Youth Fund (24YJC760017)</div></div>
     <div class="proj reveal"><div class="top"><b>Participant · 参与</b><span>2025</span></div>
-      <h4>敦煌壁画建筑图像数字化传承路径研究</h4>
+      <h4 class="zh">敦煌壁画建筑图像<wbr>数字化传承路径研究</h4>
       <div class="m">BIT Think Tank Major Issues Program (2025CX13024)</div></div>
     <div class="proj reveal" style="grid-column:1/-1"><div class="top"><b>Participant · 参与</b><span>2024</span></div>
-      <h4>设计驱动创新下的山西省方山县文化软实力提升策略研究</h4>
+      <h4 class="zh">设计驱动创新下的<wbr>山西省方山县<wbr>文化软实力提升策略研究</h4>
       <div class="m">BIT Student Innovation Team Program (2024CX06069)</div></div>
   </div>
 </section>
@@ -444,12 +461,11 @@ h1,h2,h4,.t{text-wrap:balance}
         <li><b>2025</b><span>National Scholarship (PhD)</span><i>Beijing Institute of Technology</i></li>
         <li><b>2023</b><span>National Scholarship (Master's)</span><i>Beijing Institute of Technology</i></li>
         <li><b>2023</b><span>Outstanding Student Model</span><i>Beijing Institute of Technology</i></li>
-        <li><b>2023</b><span>NCDA National Digital Art Design Competition, First Prize (National Finals)</span><i>MIIT Talent Exchange Center</i></li>
       </ul></div>
     <div class="box"><h4>Education</h4>
       <ul class="tl">
         <li><b>2026.09 – 2027.08</b><span>Nanyang Technological University</span><i>Joint PhD, College of Computing and Data Science</i></li>
-        <li><b>2022.09 – 2028.07</b><span>Beijing Institute of Technology</span><i>PhD, School of Design and Arts</i></li>
+        <li><b>2022.09 – Present</b><span>Beijing Institute of Technology</span><i>Master's–PhD Program (硕博连读), School of Design and Arts</i></li>
         <li><b>2018.09 – 2022.07</b><span>Tianjin University of Technology</span><i>BA, School of Art</i></li>
       </ul></div>
     <div class="box"><h4>Reviewer</h4>
